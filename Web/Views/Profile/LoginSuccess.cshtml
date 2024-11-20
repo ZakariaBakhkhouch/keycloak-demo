@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    @if(User.Identity is not null && User.Identity.IsAuthenticated)
+    {
+        <h2>Welcome, @User.Identity.Name</h2>
+    }
+    
+    <h3>Claims:</h3>
+    <ul>
+        @foreach (var claim in User.Claims)
+        {
+            <li>@claim.Type: @claim.Value</li>
+        }
+    </ul>
+
+    <a asp-action="Logout" asp-controller="Account">Logout</a>
+</div>
